@@ -703,7 +703,7 @@ X.head()
     <tr>
       <th>0</th>
       <td>1.0</td>
-      <td>0.271174</td>
+      <td>0.2750</td>
       <td>0.125</td>
       <td>0.014151</td>
       <td>0.0</td>
@@ -727,7 +727,7 @@ X.head()
     <tr>
       <th>1</th>
       <td>0.0</td>
-      <td>0.472229</td>
+      <td>0.4750</td>
       <td>0.125</td>
       <td>0.139136</td>
       <td>1.0</td>
@@ -751,7 +751,7 @@ X.head()
     <tr>
       <th>2</th>
       <td>1.0</td>
-      <td>0.321438</td>
+      <td>0.3250</td>
       <td>0.000</td>
       <td>0.015469</td>
       <td>1.0</td>
@@ -775,7 +775,7 @@ X.head()
     <tr>
       <th>3</th>
       <td>0.0</td>
-      <td>0.434531</td>
+      <td>0.4375</td>
       <td>0.125</td>
       <td>0.103644</td>
       <td>1.0</td>
@@ -799,7 +799,7 @@ X.head()
     <tr>
       <th>4</th>
       <td>1.0</td>
-      <td>0.434531</td>
+      <td>0.4375</td>
       <td>0.000</td>
       <td>0.015713</td>
       <td>0.0</td>
@@ -839,7 +839,7 @@ from sklearn.model_selection import train_test_split
 X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=0)
 ```
 
-# Fit a model
+## Fit a model
 Fit an intial model to the training set. In SciKit Learn you do this by first creating an instance of the regression class. From there, then use the **fit** method from your class instance to fit a model to the training data.
 
 
@@ -861,7 +861,7 @@ model_log
 
 
 
-# Predict
+## Predict
 Now that we have a model, lets take a look at how it performs on our test set.
 
 
