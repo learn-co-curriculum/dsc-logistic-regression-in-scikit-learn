@@ -1,9 +1,9 @@
 
-# Logistic Regression in SciKit Learn
+# Logistic Regression in sci-kit learn
 
 ## Introduction 
 
-In this lecture, we'll briefly introduce logistic regression with the SciKit Learn package.
+In this lecture, you'll learn about logistic regression with the sci-kit learn package.
 
 ## Objectives
 
@@ -12,11 +12,11 @@ You will be able to:
 * Understand and implement logistic regression
 * Compare testing and training errors
 
-Generally, the process for implementing logistic regression via SciKit Learn is very similar to that which we previously saw. There are a couple exceptions to this. First, rather than using patsy, we simply define y and X by specifying the columns from the dataframe, with no special syntax necessary. That said, if you need to create dummy variables for categorical variables, you must do this in a previous step manually. (See below.) Secondly, SciKit Learn will not display statistical measures such as the P-values associated with the various features. This is a shortcoming of SciKit Learn, although SciKit Learn has other useful tools for tuning models which we will investigate in future lessons.
+Generally, the process for implementing logistic regression via sci-kit learn is very similar to that which you previously saw. There are a couple exceptions to this. First, rather than using patsy, we simply define y and X by specifying the columns from the DataFrame, with no special syntax necessary. That said, if you need to create dummy variables for categorical variables, you must do this in a previous step manually. (See below.) Secondly, sci-kit learn will not display statistical measures such as the P-values associated with the various features. This is a shortcoming of sci-kit learn, although sci-kit learn has other useful tools for tuning models which we will investigate in future lessons.
 
-The other main process of model building and evaluation which we failed to discuss previously is train test split. As we saw in linear regression, train test split is an essential part of model building in order to help determine how our model will generalize to future unseen cases. After all, the point of any model is to provide future predictions where we don't already know the answer but have other informative data (X).
+The other main process of model building and evaluation which we failed to discuss previously is performing a train-test split. As we saw in linear regression, model validation is an essential part of model building in order to help determine how our model will generalize to future unseen cases. After all, the point of any model is to provide future predictions where we don't already know the answer but have other informative data (X).
 
-With that, let's take a look at implementing Logistic Regression in SciKit Learn using dummy variables and a proper train-test split.
+With that, let's take a look at implementing Logistic Regression in sci-kit learn using dummy variables and a proper train-test split.
 
 ## Step 1: Import the Data
 
@@ -147,7 +147,7 @@ df.head()
 
 ## Step 2: Define X and y
 
-Note that we first have to create our dummy variables, and then can use these to define X and y.
+Note that we first have to create our dummy variables, and then we can use these to define X and y.
 
 
 ```python
@@ -840,7 +840,7 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=0)
 ```
 
 ## Fit a model
-Fit an intial model to the training set. In SciKit Learn you do this by first creating an instance of the regression class. From there, then use the **fit** method from your class instance to fit a model to the training data.
+Fit an intial model to the training set. In sci-kit learn, you do this by first creating an instance of the regression class. From there, then use the **fit** method from your class instance to fit a model to the training data.
 
 
 ```python
@@ -908,4 +908,4 @@ And still 80% accurate for our test data!
 
 ## Summary
 
-In this lesson, we took a more complete look at a data science pipeline for logistic regression, splitting the data into train and test sets and using the model to make predictions. You'll practice this on your own in the upcoming lab before then having a more detailed discussion of more nuanced methods for evaluating our classifier's performance.
+In this lesson, you took a more complete look at a data science pipeline for logistic regression, splitting the data into train and test sets and using the model to make predictions. You'll practice this on your own in the upcoming lab before having a more detailed discussion of more nuanced methods for evaluating a classifier's performance.
