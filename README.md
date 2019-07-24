@@ -12,7 +12,7 @@ You will be able to:
 * Understand and implement logistic regression
 * Compare testing and training errors
 
-Generally, the process for implementing logistic regression via sci-kit learn is very similar to that which you previously saw. There are a couple exceptions to this. First, rather than using patsy, we simply define y and X by specifying the columns from the DataFrame, with no special syntax necessary. That said, if you need to create dummy variables for categorical variables, you must do this in a previous step manually. (See below.) Secondly, sci-kit learn will not display statistical measures such as the P-values associated with the various features. This is a shortcoming of sci-kit learn, although sci-kit learn has other useful tools for tuning models which we will investigate in future lessons.
+Generally, the process for implementing logistic regression via sci-kit learn is very similar to that which you previously saw for statsmodels. One important exception is that sci-kit learn will not display statistical measures such as the P-values associated with the various features. This is a shortcoming of sci-kit learn, although sci-kit learn has other useful tools for tuning models which we will investigate in future lessons.
 
 The other main process of model building and evaluation which we failed to discuss previously is performing a train-test split. As we saw in linear regression, model validation is an essential part of model building in order to help determine how our model will generalize to future unseen cases. After all, the point of any model is to provide future predictions where we don't already know the answer but have other informative data (X).
 
