@@ -151,18 +151,18 @@ Note that we first have to create our dummy variables, and then we can use these
 
 
 ```python
-df = pd.get_dummies(df)
+df = pd.get_dummies(df, drop_first=True)
 print(df.columns)
 df.head()
 ```
 
     Index(['PassengerId', 'Survived', 'Pclass', 'Age', 'SibSp', 'Parch', 'Fare',
-           'Name_Abbing, Mr. Anthony', 'Name_Abbott, Mr. Rossmore Edward',
-           'Name_Abbott, Mrs. Stanton (Rosa Hunt)',
+           'Name_Abbott, Mr. Rossmore Edward',
+           'Name_Abbott, Mrs. Stanton (Rosa Hunt)', 'Name_Abelson, Mr. Samuel',
            ...
-           'Cabin_F G73', 'Cabin_F2', 'Cabin_F33', 'Cabin_F38', 'Cabin_F4',
-           'Cabin_G6', 'Cabin_T', 'Embarked_C', 'Embarked_Q', 'Embarked_S'],
-          dtype='object', length=1731)
+           'Cabin_F G63', 'Cabin_F G73', 'Cabin_F2', 'Cabin_F33', 'Cabin_F38',
+           'Cabin_F4', 'Cabin_G6', 'Cabin_T', 'Embarked_Q', 'Embarked_S'],
+          dtype='object', length=1726)
 
 
 
@@ -193,10 +193,11 @@ df.head()
       <th>SibSp</th>
       <th>Parch</th>
       <th>Fare</th>
-      <th>Name_Abbing, Mr. Anthony</th>
       <th>Name_Abbott, Mr. Rossmore Edward</th>
       <th>Name_Abbott, Mrs. Stanton (Rosa Hunt)</th>
+      <th>Name_Abelson, Mr. Samuel</th>
       <th>...</th>
+      <th>Cabin_F G63</th>
       <th>Cabin_F G73</th>
       <th>Cabin_F2</th>
       <th>Cabin_F33</th>
@@ -204,7 +205,6 @@ df.head()
       <th>Cabin_F4</th>
       <th>Cabin_G6</th>
       <th>Cabin_T</th>
-      <th>Embarked_C</th>
       <th>Embarked_Q</th>
       <th>Embarked_S</th>
     </tr>
@@ -254,7 +254,7 @@ df.head()
       <td>0</td>
       <td>0</td>
       <td>0</td>
-      <td>1</td>
+      <td>0</td>
       <td>0</td>
       <td>0</td>
     </tr>
@@ -332,7 +332,7 @@ df.head()
     </tr>
   </tbody>
 </table>
-<p>5 rows × 1731 columns</p>
+<p>5 rows × 1726 columns</p>
 </div>
 
 
@@ -465,7 +465,7 @@ df.head()
 
 ```python
 x_feats = ['Pclass', 'Sex', 'Age', 'SibSp', 'Fare', 'Cabin', 'Embarked']
-X = pd.get_dummies(df[x_feats])
+X = pd.get_dummies(df[x_feats], drop_first=True)
 y = df.Survived
 X.head() #Preview our data to make sure it looks reasonable
 ```
@@ -495,13 +495,14 @@ X.head() #Preview our data to make sure it looks reasonable
       <th>Age</th>
       <th>SibSp</th>
       <th>Fare</th>
-      <th>Sex_female</th>
       <th>Sex_male</th>
-      <th>Cabin_A10</th>
       <th>Cabin_A14</th>
       <th>Cabin_A16</th>
       <th>Cabin_A19</th>
+      <th>Cabin_A20</th>
+      <th>Cabin_A23</th>
       <th>...</th>
+      <th>Cabin_F G63</th>
       <th>Cabin_F G73</th>
       <th>Cabin_F2</th>
       <th>Cabin_F33</th>
@@ -509,7 +510,6 @@ X.head() #Preview our data to make sure it looks reasonable
       <th>Cabin_F4</th>
       <th>Cabin_G6</th>
       <th>Cabin_T</th>
-      <th>Embarked_C</th>
       <th>Embarked_Q</th>
       <th>Embarked_S</th>
     </tr>
@@ -521,8 +521,8 @@ X.head() #Preview our data to make sure it looks reasonable
       <td>22.0</td>
       <td>1</td>
       <td>7.2500</td>
-      <td>0</td>
       <td>1</td>
+      <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
@@ -545,7 +545,7 @@ X.head() #Preview our data to make sure it looks reasonable
       <td>38.0</td>
       <td>1</td>
       <td>71.2833</td>
-      <td>1</td>
+      <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
@@ -559,7 +559,7 @@ X.head() #Preview our data to make sure it looks reasonable
       <td>0</td>
       <td>0</td>
       <td>0</td>
-      <td>1</td>
+      <td>0</td>
       <td>0</td>
       <td>0</td>
     </tr>
@@ -569,7 +569,7 @@ X.head() #Preview our data to make sure it looks reasonable
       <td>26.0</td>
       <td>0</td>
       <td>7.9250</td>
-      <td>1</td>
+      <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
@@ -593,7 +593,7 @@ X.head() #Preview our data to make sure it looks reasonable
       <td>35.0</td>
       <td>1</td>
       <td>53.1000</td>
-      <td>1</td>
+      <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
@@ -617,8 +617,8 @@ X.head() #Preview our data to make sure it looks reasonable
       <td>35.0</td>
       <td>0</td>
       <td>8.0500</td>
-      <td>0</td>
       <td>1</td>
+      <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
@@ -637,7 +637,7 @@ X.head() #Preview our data to make sure it looks reasonable
     </tr>
   </tbody>
 </table>
-<p>5 rows × 156 columns</p>
+<p>5 rows × 153 columns</p>
 </div>
 
 
@@ -680,13 +680,14 @@ X.head()
       <th>Age</th>
       <th>SibSp</th>
       <th>Fare</th>
-      <th>Sex_female</th>
       <th>Sex_male</th>
-      <th>Cabin_A10</th>
       <th>Cabin_A14</th>
       <th>Cabin_A16</th>
       <th>Cabin_A19</th>
+      <th>Cabin_A20</th>
+      <th>Cabin_A23</th>
       <th>...</th>
+      <th>Cabin_F G63</th>
       <th>Cabin_F G73</th>
       <th>Cabin_F2</th>
       <th>Cabin_F33</th>
@@ -694,7 +695,6 @@ X.head()
       <th>Cabin_F4</th>
       <th>Cabin_G6</th>
       <th>Cabin_T</th>
-      <th>Embarked_C</th>
       <th>Embarked_Q</th>
       <th>Embarked_S</th>
     </tr>
@@ -706,8 +706,8 @@ X.head()
       <td>0.2750</td>
       <td>0.125</td>
       <td>0.014151</td>
-      <td>0.0</td>
       <td>1.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -730,7 +730,7 @@ X.head()
       <td>0.4750</td>
       <td>0.125</td>
       <td>0.139136</td>
-      <td>1.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -744,7 +744,7 @@ X.head()
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>1.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
     </tr>
@@ -754,7 +754,7 @@ X.head()
       <td>0.3250</td>
       <td>0.000</td>
       <td>0.015469</td>
-      <td>1.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -778,7 +778,7 @@ X.head()
       <td>0.4375</td>
       <td>0.125</td>
       <td>0.103644</td>
-      <td>1.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -802,8 +802,8 @@ X.head()
       <td>0.4375</td>
       <td>0.000</td>
       <td>0.015713</td>
-      <td>0.0</td>
       <td>1.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -822,7 +822,7 @@ X.head()
     </tr>
   </tbody>
 </table>
-<p>5 rows × 156 columns</p>
+<p>5 rows × 153 columns</p>
 </div>
 
 
@@ -846,7 +846,7 @@ Fit an intial model to the training set. In sci-kit learn, you do this by first 
 ```python
 from sklearn.linear_model import LogisticRegression
 
-logreg = LogisticRegression(fit_intercept = False, C = 1e12)
+logreg = LogisticRegression(fit_intercept = False, C = 1e12, solver='liblinear')
 model_log = logreg.fit(X_train, y_train)
 model_log
 ```
@@ -855,9 +855,10 @@ model_log
 
 
     LogisticRegression(C=1000000000000.0, class_weight=None, dual=False,
-              fit_intercept=False, intercept_scaling=1, max_iter=100,
-              multi_class='ovr', n_jobs=1, penalty='l2', random_state=None,
-              solver='liblinear', tol=0.0001, verbose=0, warm_start=False)
+                       fit_intercept=False, intercept_scaling=1, l1_ratio=None,
+                       max_iter=100, multi_class='warn', n_jobs=None, penalty='l2',
+                       random_state=None, solver='liblinear', tol=0.0001, verbose=0,
+                       warm_start=False)
 
 
 
@@ -879,15 +880,15 @@ print(pd.Series(residuals).value_counts())
 print(pd.Series(residuals).value_counts(normalize=True))
 ```
 
-    0    568
-    1    100
+    0    563
+    1    105
     Name: Survived, dtype: int64
-    0    0.850299
-    1    0.149701
+    0    0.842814
+    1    0.157186
     Name: Survived, dtype: float64
 
 
-Not bad; our classifier was 85% correct for our training data!
+Not bad; our classifier was about 85% correct for our training data!
 
 
 ```python
@@ -896,15 +897,15 @@ print(pd.Series(residuals).value_counts())
 print(pd.Series(residuals).value_counts(normalize=True))
 ```
 
-    0    180
-    1     43
+    0    174
+    1     49
     Name: Survived, dtype: int64
-    0    0.807175
-    1    0.192825
+    0    0.780269
+    1    0.219731
     Name: Survived, dtype: float64
 
 
-And still 80% accurate for our test data!
+And still about 80% accurate for our test data!
 
 ## Summary
 
