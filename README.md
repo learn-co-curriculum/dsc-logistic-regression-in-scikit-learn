@@ -9,8 +9,8 @@ In this lecture, you'll learn about logistic regression with the scikit-learn pa
 
 You will be able to:
 
-* Understand and implement logistic regression
-* Compare testing and training errors
+- Understand and implement logistic regression
+- Compare testing and training errors
 
 Generally, the process for implementing logistic regression via scikit-learn is very similar to that which you previously saw for statsmodels. One important exception is that scikit-learn will not display statistical measures such as the p-values associated with the various features. This is a shortcoming of scikit-learn, although scikit-learn has other useful tools for tuning models which we will investigate in future lessons.
 
