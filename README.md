@@ -14,7 +14,7 @@ You will be able to:
 
 Generally, the process for implementing logistic regression via scikit-learn is very similar to that which you previously saw for statsmodels. One important exception is that scikit-learn will not display statistical measures such as the p-values associated with the various features. This is a shortcoming of scikit-learn, although scikit-learn has other useful tools for tuning models which we will investigate in future lessons.
 
-The other main process of model building and evaluation which we failed to discuss previously is performing a train-test split. As we saw in linear regression, model validation is an essential part of model building in order to help determine how our model will generalize to future unseen cases. After all, the point of any model is to provide future predictions where we don't already know the answer but have other informative data (X).
+The other main process of model building and evaluation which we failed to discuss previously is performing a train-test split. As we saw in linear regression, model validation is an essential part of model building as it helps determine how our model will generalize to future unseen cases. After all, the point of any model is to provide future predictions where we don't already know the answer but have other informative data (X).
 
 With that, let's take a look at implementing Logistic Regression in scikit-learn using dummy variables and a proper train-test split.
 
