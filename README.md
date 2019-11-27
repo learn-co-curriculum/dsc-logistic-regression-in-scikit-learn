@@ -1,24 +1,23 @@
 
 # Logistic Regression in scikit-learn
 
-## Introduction 
 
-In this lecture, you'll learn about logistic regression with the scikit-learn package.
+## Introduction
+
+Generally, the process for fitting a logistic regression model using scikit-learn is very similar to that which you previously saw for `statsmodels`. One important exception is that scikit-learn will not display statistical measures such as the p-values associated with the various features. This is a shortcoming of scikit-learn, although scikit-learn has other useful tools for tuning models which we will investigate in future lessons.
+
+The other main process of model building and evaluation which we didn't to discuss previously is performing a train-test split. As we saw in linear regression, model validation is an essential part of model building as it helps determine how our model will generalize to future unseen cases. After all, the point of any model is to provide future predictions where we don't already know the answer but have other informative data (`X`).
+
+With that, let's take a look at implementing logistic regression in scikit-learn using dummy variables and a proper train-test split.
+
 
 ## Objectives
 
 You will be able to:
 
-- Understand and implement logistic regression
-- Compare testing and training errors
+- Fit a logistic regression model using scikit-learn 
 
-Generally, the process for implementing logistic regression via scikit-learn is very similar to that which you previously saw for statsmodels. One important exception is that scikit-learn will not display statistical measures such as the p-values associated with the various features. This is a shortcoming of scikit-learn, although scikit-learn has other useful tools for tuning models which we will investigate in future lessons.
-
-The other main process of model building and evaluation which we failed to discuss previously is performing a train-test split. As we saw in linear regression, model validation is an essential part of model building as it helps determine how our model will generalize to future unseen cases. After all, the point of any model is to provide future predictions where we don't already know the answer but have other informative data (X).
-
-With that, let's take a look at implementing Logistic Regression in scikit-learn using dummy variables and a proper train-test split.
-
-## Step 1: Import the Data
+## Import the data
 
 
 ```python
@@ -145,9 +144,9 @@ df.head()
 
 
 
-## Step 2: Define X and y
+## Define `X` and `y`
 
-Note that we first have to create our dummy variables, and then we can use these to define X and y.
+Note that we first have to create our dummy variables, and then we can use these to define `X` and `y`.
 
 
 ```python
@@ -466,8 +465,8 @@ df.head()
 ```python
 x_feats = ['Pclass', 'Sex', 'Age', 'SibSp', 'Fare', 'Cabin', 'Embarked']
 X = pd.get_dummies(df[x_feats], drop_first=True)
-y = df.Survived
-X.head() #Preview our data to make sure it looks reasonable
+y = df['Survived']
+X.head() # Preview our data to make sure it looks reasonable
 ```
 
 
@@ -648,9 +647,11 @@ Another important model tuning practice is to normalize your data. That is, if t
 
 
 ```python
-X = X.fillna(value=0) #Fill null values
+# Fill missing values
+X = X.fillna(value=0) 
 for col in X.columns:
-    X[col] = (X[col]-min(X[col]))/ (max(X[col]) - min(X[col])) #We subtract the minimum and divide by the range forcing a scale of 0 to 1 for each feature
+    # Subtract the minimum and divide by the range forcing a scale of 0 to 1 for each feature
+    X[col] = (X[col] - min(X[col]))/ (max(X[col]) - min(X[col])) 
 
 X.head()
 ```
@@ -827,26 +828,22 @@ X.head()
 
 
 
-## Train-Test Split
+## Train-test split
 
 
 ```python
 from sklearn.model_selection import train_test_split
-```
-
-
-```python
 X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=0)
 ```
 
 ## Fit a model
-Fit an initial model to the training set. In scikit-learn, you do this by first creating an instance of the regression class. From there, then use the **fit** method from your class instance to fit a model to the training data.
+Fit an initial model to the training set. In scikit-learn, you do this by first creating an instance of the `LogisticRegression` class. From there, then use the `.fit()` method from your class instance to fit a model to the training data.
 
 
 ```python
 from sklearn.linear_model import LogisticRegression
 
-logreg = LogisticRegression(fit_intercept = False, C = 1e12, solver='liblinear')
+logreg = LogisticRegression(fit_intercept=False, C=1e12, solver='liblinear')
 model_log = logreg.fit(X_train, y_train)
 model_log
 ```
@@ -863,7 +860,7 @@ model_log
 
 
 ## Predict
-Now that we have a model, lets take a look at how it performs on our test set.
+Now that we have a model, lets take a look at how it performs. 
 
 
 ```python
@@ -874,7 +871,7 @@ y_hat_train = logreg.predict(X_train)
 
 ```python
 import numpy as np
-#We could subtract the two columns. If values or equal, difference will be zero. Then count number of zeros.
+# We could subtract the two columns. If values or equal, difference will be zero. Then count number of zeros 
 residuals = np.abs(y_train - y_hat_train)
 print(pd.Series(residuals).value_counts())
 print(pd.Series(residuals).value_counts(normalize=True))
@@ -888,7 +885,7 @@ print(pd.Series(residuals).value_counts(normalize=True))
     Name: Survived, dtype: float64
 
 
-Not bad; our classifier was about 85% correct for our training data!
+Not bad; our classifier was about 85% correct on our training data!
 
 
 ```python
@@ -905,8 +902,8 @@ print(pd.Series(residuals).value_counts(normalize=True))
     Name: Survived, dtype: float64
 
 
-And still about 80% accurate for our test data!
+And still about 80% accurate on our test data!
 
 ## Summary
 
-In this lesson, you took a more complete look at a data science pipeline for logistic regression, splitting the data into train and test sets and using the model to make predictions. You'll practice this on your own in the upcoming lab before having a more detailed discussion of more nuanced methods for evaluating a classifier's performance.
+In this lesson, you took a more complete look at a data science pipeline for logistic regression, splitting the data into training and test sets and using the model to make predictions. You'll practice this on your own in the upcoming lab before having a more detailed discussion of more nuanced methods for evaluating a classifier's performance.
