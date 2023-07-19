@@ -423,7 +423,7 @@ X_train_categorical
 from sklearn.preprocessing import OneHotEncoder
 import numpy as np
 
-ohe = OneHotEncoder(handle_unknown="ignore", sparse=False)
+ohe = OneHotEncoder(handle_unknown="ignore", sparse_output=False)
 
 ohe.fit(X_train_categorical)
 X_train_ohe = pd.DataFrame(
